@@ -1,0 +1,107 @@
+# 플러터 공부 - 1 dart 기본공부
+
+## dart 란 ?
+
+**flutter 에서 쓰이는 언어** 
+자바와 비슷하게 버추얼 머신을 이용한 컴파일 방식을 가지고 있고, 이러한 특징 덕분에 **어떤 플랫폼**에서든 쓰일 수 있다.
+
+
+## dart의 변수선언
+
+~~~dart
+//함수 정의
+
+void  printInteger(int  number) {
+print('the number is $number');
+}
+
+// 기본 main 함수 설정.
+void  main(List<String> args) {
+int  a = 10;
+printInteger(a);
+}
+~~~
+
+기본적인 선언방식과 함수 생성은 여타 다른 언어와 비슷하지만
+분명한 **차이를 지닌 점**이 존재한다
+
+### var 타입
+~~~dart
+void  main(List<String> args) {
+var  variable = 10;
+print(variable);
+}
+~~~
+dart는 가지고 있는 값에 대해서 **추론을하여 정의**할 수 있는 var 타입을 가지고 있다. 이를 가지고 타입에 따라 원하는 행동을 수행 할 수 있도록 코드를 작성할 수 있다.
+
+### null safety
+
+참조 : https://www.youtube.com/watch?v=tP9TcrUZoIs
+
+**null safety란?**
+프로그램을 작성하다보면 null 값을 참조하게 되어 에러가 발생하게되는 경우가 많은데, null safety 를 사용하면 이를 컴파일러가 컴파일 하기 전에 미리 찾아서 버그를 알려준다.
+
+그렇다고 **null** 자체를 없에는 것이 아니다.  null은 '없는' 값을 효과적으로 표현할수 있는 수단이고, 우리는 이미 이 표현에 상당히 익숙하다.
+**하지만!** 들어와야하는 값이 아닌 null 값이 들어오는 경우는 굉장히 좋지않은 상황이기 때문에, 이에 대한 또다른 처리를 해 동작이 올바르게 될 수 있도록 만들어 주는 것 이다.
+
+**dart 는 null safety기능을 항상 지원한다.**
+따라서 **null 값을 함부로 사용할 수 없다.**
+
+### dart의  null safety
+
+기본적으로 dart의 **모든 변수는 오브젝트이다.** null을 제외한 하나하나 모두가 클래스 이고, 이는 모두 object 클래스의 **자식 클래스**들이다.
+
+#### nullable 과 non nullable
+~~~dart
+//non-nullable 변수
+int nonNullAble = 10;
+//nullable 변수
+int? nullAble = null;
+~~~
+기본적으로 변수 클래스는  null 값을 가질 수 없다. 따라서 null 값을 넣으면 컴파일 에러가 난다. 하지만 nullable 클래스의 변수들은 null값을 가질 수 있다.
+
+#### null 조건 연산자
+
+~~~ dart
+int? nullAble = null;
+
+//null 값인지 아닌지 판단.
+if(nullAble == null)
+print("this is nullable variable");
+else
+print(nullAble);
+// 기존 non nullable 값 대입
+nullAble = 10;
+//?? 구문을 활용하여 null 값의 여부에 따라 다른 값을 줄 수도 있다.
+print(nullAble ?? "this is nullable variable");
+~~~
+nullable 클래스 null 값이외에도 non nullable 에서 쓰이는 기존 값을 쓸 수도 있다.
+
+이때 nullable은 두가지 상태중 하나가 되는데,
+1. 기존 nullable 클래스 그래도 값 대입.
+2. 기존 nullable에서 non nullable로 변수가 변환되어 값을 대입.
+이 된다.
+기본적으로 첫번째 상태 그래도 가지만, 만약에 컴파일러가 이 변수가 **앞으로 nullable 하게 쓰이지 않아도 괜찮다 판단**될 경우. non nullable클래스로 승급시켜 사용할수 있게 된다.
+
+
+~~~ dart
+String? str = null;
+print(str?.length ?? 0);
+~~~
+또한 값이 null 인지 아닌지에 따라 ?. 형식을 붙혀 null값에서 잘못된 원소로의 접근을 처리할 수도 있다.
+
+#### null값 보증 연산자
+
+기본적으로  nullable 클래스의 값은 non nullable의 값으로 넘겨주지 못한다. 
+~~~ dart 
+// a가 nullable 이기 때문에 컴파일 에러!
+int? a = 10
+int b = a
+~~~
+따라서 이를 넘겨주기 위해서, ! 를 뒤에 붙혀줌 으로서 값을 강제적으로 넘겨줄 수 있다.
+~~~ dart 
+// 이러면 오류가 나지 않고 정상적으로 처리가 됨.
+int? a = 10
+int b = a!
+~~~
+단, 값이 null인 경우에는 오류가 발생하니 주의해서 써야할 필요가 있다.
