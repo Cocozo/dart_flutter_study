@@ -212,3 +212,32 @@ max(int  a, b) {
 max(int  a, b) => a > b ? a : b;
 ~~~
 다음과 같은 화살표 표현식을 쓴 인라인 표현식으로도 가능하다.
+
+### named parameter
+~~~dart
+// named parameter
+max({int? a, int? b}) => a! > b! ? a : b;
+
+void main(List<String> args) {
+  // named parameter를 사용할 시 명시적으로 호출할때 매개변수의 이름명을 명시해주어야 한다.
+  int a = max(a: 10, b: 20);
+  print(a);
+}
+~~~
+기본적으로 매개변수들은 값을 필수로 하는 required 키워드를 암시적으로 가지고 있다.
+여기서 {} 를 이용해 {param1, param2, …} 로 매개변수들을 이어주면 변수들의 상태는 써도되고 안써도 되는, **optional 상태**가 된다.
+값이 없는 null 상태가 될 수 있어 **nullable 클래수 변수들을 사용**하고, 또한 함수 호출시 **매개변수의 이름명을 명시**해주어야 한다.
+
+
+만약에 named parameter중, 필수적으로 값을 필요로 한다면
+~~~dart
+// named parameter
+max({int? a, required int b}) => a! > b! ? a : b;
+~~~
+매개변수 b와 같이 required 키워드가 붙으면 필수적으로 값을 필요로 하는 매개변수가 된다.
+
+아님 default값을  설정하여
+~~~dart
+max_default({int a = 10, int b = 20}) => a > b ? a : b;
+~~~
+다음과 같이 값을 넣지 않을 시를 설정하여 nullable클래스 에서 벗어남과 동시에 기본 값을 설정할 수 있다.
