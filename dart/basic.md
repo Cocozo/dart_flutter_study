@@ -105,3 +105,110 @@ int? a = 10
 int b = a!
 ~~~
 단, 값이 null인 경우에는 오류가 발생하니 주의해서 써야할 필요가 있다.
+
+#### late 키워드
+
+~~~ dart
+// late 키워드를 작성하면 미리 값을 넣지 않아도 된다.
+late String name;
+void  main() {
+	name = "kim";
+	print(name);
+}
+~~~
+
+late  키워드를 이용하면 선언한 변수는 미리 값을 선언하지 않고 나중에 값을 선언해도 된다. 이는 name이란 변수가 사용되기 전까지는 이 변수를 초기화 시키지 않는데, 이를 이용해서
+
+~~~ dart
+//해당 변수는 쓰여질때까지는 expensivemethod()를 호출하지 않는다.
+late int latecall = expensivemethod();
+~~~
+다음과 같지 작성하면, expensivemethod 는 latecall이 사용되기 전까지는  호출되지 않는다.
+
+#### final and const
+
+~~~ dart
+//final, const 둘다 값을 변경할 수 없는 상수 키워드지만, 차이점이 있다.
+
+// final 키워드는 실행중 해당 변수가 선언되는시점에서 값이 고정됨.
+final  a = 10;
+final  int  a2 = 10;
+
+// const 키워드는 컴파일할시 값이 고정됨.
+const  b = 10;
+const  int  b2 = 10;
+~~~
+
+final, const는 둘 다  상수를 만드는 키워드 이다. 하지만 그 둘을 구분해서 써야하는데, 선언시점이 다르기 때문이다.
+
+ - final : 실행중 해당 변수가 선언되는시점에서 값이 고정됨.
+ - const : 컴파일할시 값이 고정됨.
+
+따라서 값이 시시각각 변하는 값을 사용할때에는 final 해당 시점을 고정시키기에 사용하기 괜찮으나, const는 컴파일 시점에서 값이 고정되기 때문에 값이 달라질 수 있다.
+
+**final, const 는 변수 뿐만 아니라 배열에도 사용할 수 있다!**
+
+```dart
+var foo = const [];
+final bar = const [];
+const baz = []; // Equivalent to `const []`
+```
+
+## dart의 list
+
+특별이 다른 언어에 비해 선언부 자체는 특별한 부분은 없다.
+**단!** 여러 모던 언어에 대한 이야기가 있어 그부분만 짚고 넘어간다.
+
+
+### list
+
+#### spread operation
+~~~dart
+//... 키워드
+var list = [1, 2, 3];
+var list2 = [0, ...list];
+assert(list2.length == 4);
+~~~
+자바 스크립트의  스프레드 오퍼레이션을 사용할 수 있다.
+허나 이에 null 에러가 일어날 수 있는 이슈에 대해서
+
+~~~dart
+var list2 = [0, ...?list];
+assert(list2.length == 1);
+~~~
+처럼 ?을 붙혀 nullable 형식처럼 만들 수 있다.
+
+#### collection if, for
+``` dart
+// conllection if를 활용하여 조건부 리스트 생성
+var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
+
+// conllection for를 활용하여 리스트 생성
+var listOfInts = [1, 2, 3];
+var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
+assert(listOfStrings[1] == '#1');
+```
+
+리스트 생성란 안에 인라인 형식의 if문, for문을 넣어  리스트를 생성할 수 있다.
+
+## dart의 함수.
+
+~~~dart
+int max(int  a, b) {
+	return  a > b ? a : b;
+}
+~~~
+기본적으로 리턴타입, 함수명, 매개변수로 이루어져 있다. 하지만 여기서
+
+~~~dart 
+max(int  a, b) {
+	return  a > b ? a : b;
+}
+~~~
+처럼 리턴타입을 생략할 경우, 리턴타입을 추론하여 암시적으로 표현하게 된다.
+
+또한 위와같이 한줄로 이루어진 코드일 경우, 
+~~~ dart
+max(int  a, b) => a > b ? a : b;
+~~~
+다음과 같은 화살표 표현식을 쓴 인라인 표현식으로도 가능하다.
