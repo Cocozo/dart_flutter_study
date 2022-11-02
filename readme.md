@@ -12,3 +12,6 @@
 김재하
 국민대학교 소프트웨어 학부 소프트웨어 학과
 이메일 : rlawogk1231@kookmin.ac.kr
+
+## 공부 내용
+(day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/basic.md)
