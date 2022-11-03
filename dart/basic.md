@@ -232,7 +232,7 @@ void main(List<String> args) {
 만약에 named parameter중, 필수적으로 값을 필요로 한다면
 ~~~dart
 // named parameter
-max({int? a, required int b}) => a! > b! ? a : b;
+max({int? a, required int b}) => a! > b ? a : b;
 ~~~
 매개변수 b와 같이 required 키워드가 붙으면 필수적으로 값을 필요로 하는 매개변수가 된다.
 
