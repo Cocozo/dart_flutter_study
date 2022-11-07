@@ -14,4 +14,4 @@
 이메일 : rlawogk1231@kookmin.ac.kr
 
 ## 공부 내용
-(day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/basic.md)
+(day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/readme.md)

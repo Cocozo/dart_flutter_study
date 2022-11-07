@@ -241,3 +241,83 @@ max({int? a, required int b}) => a! > b ? a : b;
 max_default({int a = 10, int b = 20}) => a > b ? a : b;
 ~~~
 다음과 같이 값을 넣지 않을 시를 설정하여 nullable클래스 에서 벗어남과 동시에 기본 값을 설정할 수 있다.
+
+### 익명 함수(Anonymous functions)
+
+~~~dart
+const list = ['apples', 'bananas', 'oranges'];
+list.map((item) {
+  return item.toUpperCase();
+}).forEach((item) {
+  print('$item: ${item.length}');
+});
+~~~
+
+dart에서, 함수는 1급 객체이다!  
+따라서 함수를 변수처럼 값을 넘겨줄 수 있는데, 따라서 함수를 이름을 붙혀주지 않는 **익명함수** 형식으로 넘겨 줄 수 있다.  
+(다른 언어란 비교하자면, **자바스크립트** 처럼 말이다.)
+
+### Lexical scope
+
+dart는 Lexical scope를 따르고 있다.  
+Lexical scope는 함수를 어디서 선언하였는지에 따라 상위 스코프를 결정한다.  
+
+~~~dart
+
+bool topLevel = true;
+
+void main() {
+  var insideMain = true;
+
+  void myFunction() {
+    var insideFunction = true;
+
+    void nestedFunction() {
+      var insideNestedFunction = true;
+
+      assert(topLevel);
+      assert(insideMain);
+      assert(insideFunction);
+      assert(insideNestedFunction);
+    }
+  }
+}
+
+~~~
+
+해당 메인 함수를 보면, 각각 의 함수가 선언되었는데, 이 함수들의 상위 스코프는 선언된 스코프를 가지고 있는 함수로 결정된다.   
+각각 선언된 변수들은  그 안에서만 활용될 수 있다.  
+중요한 점은 함수의 호출이 아니라 함수의 선언에 따라 결정된다는 점이다.
+
+따라서, 해당 코드와 같은 결과물이 나올 수 있다.
+
+~~~ dart
+Function makeAdder(int addBy) {
+  //해당 익명함수는 makeAdder 함수의 스코프를 상위 스코프를 가진다!
+  return (int i) => addBy + i;
+}
+
+void main() {
+  // Create a function that adds 2.
+  var add2 = makeAdder(2);
+
+  // Create a function that adds 4.
+  var add4 = makeAdder(4);
+
+  assert(add2(3) == 5);
+  assert(add4(3) == 7);
+}
+~~~
+
+해당 함수가 리턴값을 함수로 가질 경우,   
+리턴값으로 나온 함수는 해당 함수를 상위 스코프를 가진다.   
+따라서 해당 스코프안에서 선언한 변수, 함수를 **그대로 사용할 수 있다.**  
+
+
+### 깊은복사, 얇은복사(Deep copy, Shallow copy)
+
+
+기본적으로  ` = ` 연산자를 사용할 경우 복사대상과 똑같은 주솟값을 똑같이 공유하는 얇은 복사(**Shallow copy**)가 일어 난다.  
+**특히** 클래스 오브젝트를 가진 변수를 만들때 많이 겪고는 하는데,  
+이는 ` object.clone() `를 이용하거나, 오퍼레이터를 오버로딩 하여 사용하여 각자의 독립적인 깊은복사(**deep copy**) 가 일어나게 할 수 있다.
+
