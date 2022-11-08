@@ -67,10 +67,25 @@ MVVM 패턴은 Command 패턴과 Data Binding 두 가지 패턴을 사용하여 
   
 View Model과 View는 1:n 관계
 
-### 참고자료
-[커멘드 패턴](https://ko.wikipedia.org/wiki/%EC%BB%A4%EB%A7%A8%EB%93%9C_%ED%8C%A8%ED%84%B4)
+### [커멘드 패턴](https://ko.wikipedia.org/wiki/%EC%BB%A4%EB%A7%A8%EB%93%9C_%ED%8C%A8%ED%84%B4)
 
-[데이터 바인딩](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B0%94%EC%9D%B8%EB%94%A9)
+(이해를 돕기위한 자료)
+![image](command-pattern.png)
+
+invoker, command 와  
+receiver, ConcreteCommand 로 구성되어있는 디자인패턴이다.  
+
+이 패턴의 핵심은 **캡술화** 이다. 
+실행되는 기능을 **캡슐화** 해줌으로서 여러 기능을 실행할 수 있는 재사용성이 높은 클래스를 설계하는 패턴이다.  
+이 친구의 핵심은 의존성 제거에 있는데,  
+바로 여러 실행을 요구하는 호출자(invoker)와 실제 실행을 구현하는 수신자(receiver)를 실행시킬 기술을 캡슐화 하여 구분해 줄 수 있다.
+
+이 패턴은 command 인터페이스 활용해 주는것 인데,  
+receiver는 실행해야하는 기능들은 command 인터페이스를 상속하여 execute()에 구현하여 캠슐화 시켜주고, 이를 invoker에서 캡슐화된 command 인터페이스의 execute() 를 호출하여 일괄적으로 실핼할 수 있게 만들어 준다.  
+(추후 코드로 구현한 코드 붙여넣기.)
+
+
+### [데이터 바인딩](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B0%94%EC%9D%B8%EB%94%A9)
 
 추후에 한번 정리할 필요가 있다.
 아는 것중에, React 가 아마 이 데이터 바인딩을 잘 활용하지 않았을까 싶다.
