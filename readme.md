@@ -15,3 +15,4 @@
 
 ## 공부 내용
 (day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/readme.md)
+(day 5 ~) [basic CS](https://github.com/Cocozo/dart_flutter_study/blob/main/CS/design_pattern/readme.md)
