@@ -52,3 +52,25 @@ View와 Model의 의존성이 없다.
 
 ## MVVM 모델
 
+![image](mvvm_image.png)
+
+Model : 어플리케이션에서 사용하는데이터, 데이터를 처리하는 부분(로직, 데이터)
+View : 사용자에서 보여지는 UI.
+View Model : View를 표현하기 위해 만든 View를 위한 Model. 
+View를 나타내 주기 위한 Model이자 View를 나타내기 위한 데이터 처리를 하는 부분
+  
+
+View를 통해 이벤트 발생 -> Command 패턴으로 View Model에 event 전달 -> View Model에서 Model으로 필요한 데이터 요청 -> Model은 View Model에게 필요한 데이터 전달 ->  View Model은 응답 받은 데이터를 가공 및 저장. -> View는 View Model과 Data Binding하여 화면을 나타냄.
+
+### 특징  
+MVVM 패턴은 Command 패턴과 Data Binding 두 가지 패턴을 사용하여 구현되어 View와 View Model 사이의 의존성을 없엠. 또한 view 와 model 사이의 의존석이 없어 각각 독립적인것이 특징이나, 그 구조 덕분에 설계하기 어려워 지는 단점이 있음.
+  
+View Model과 View는 1:n 관계
+
+### 참고자료
+[커멘드 패턴](https://ko.wikipedia.org/wiki/%EC%BB%A4%EB%A7%A8%EB%93%9C_%ED%8C%A8%ED%84%B4)
+
+[데이터 바인딩](https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EB%B0%94%EC%9D%B8%EB%94%A9)
+
+추후에 한번 정리할 필요가 있다.
+아는 것중에, React 가 아마 이 데이터 바인딩을 잘 활용하지 않았을까 싶다.
