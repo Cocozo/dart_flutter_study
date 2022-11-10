@@ -13,5 +13,9 @@
 국민대학교 소프트웨어 학부 소프트웨어 학과
 이메일 : rlawogk1231@kookmin.ac.kr
 
+## 추가적인 내용.
+아무래도 공부방향을 전반적인 프론트 방향으로 바꿀까 생각중이다.
+백까지 하기엔 아직은 너무 바쁘기 또한 하고, 나 자신이 너무 힘들다는 느낌이 든다. 앞으로 하기에 따라 다르겠지만, 리엑트를 먼저 공부를 해볼까 생각한다.
+
 ## 공부 내용
 (day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/readme.md)
