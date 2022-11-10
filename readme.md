@@ -18,4 +18,5 @@
 백까지 하기엔 아직은 너무 바쁘기 또한 하고, 나 자신이 너무 힘들다는 느낌이 든다. 앞으로 하기에 따라 다르겠지만, 리엑트를 먼저 공부를 해볼까 생각한다.
 
 ## 공부 내용
-(day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/readme.md)
+(day 1 ~) [basic dart](https://github.com/Cocozo/dart_flutter_study/blob/main/dart/readme.md)  
+(day 5 ~) [basic CS](https://github.com/Cocozo/dart_flutter_study/blob/main/CS/design_pattern/readme.md)
